@@ -130,6 +130,12 @@ namespace GameFrameX.Payment.Runtime
         [UnityEngine.Scripting.Preserve]
         public void ConsumePurchase(string purchaseToken)
         {
+            if (string.IsNullOrEmpty(purchaseToken))
+            {
+                Log.Warning("Purchase token is null or empty.");
+                return;
+            }
+
             _paymentManager.ConsumePurchase(purchaseToken);
         }
 
@@ -143,6 +149,18 @@ namespace GameFrameX.Payment.Runtime
         [UnityEngine.Scripting.Preserve]
         public void BuyInApp(string productId, string orderId, string offerToken = "", string customData = "")
         {
+            if (string.IsNullOrEmpty(productId))
+            {
+                Log.Warning("Product ID is null or empty.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(orderId))
+            {
+                Log.Warning("Order ID is null or empty.");
+                return;
+            }
+
             _paymentManager.BuyInApp(productId, orderId, offerToken, customData);
         }
 
@@ -156,6 +174,18 @@ namespace GameFrameX.Payment.Runtime
         [UnityEngine.Scripting.Preserve]
         public void BuySubs(string productId, string orderId, string offerToken = "", string customData = "")
         {
+            if (string.IsNullOrEmpty(productId))
+            {
+                Log.Warning("Product ID is null or empty.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(orderId))
+            {
+                Log.Warning("Order ID is null or empty.");
+                return;
+            }
+
             _paymentManager.BuySubs(productId, orderId, offerToken, customData);
         }
 
@@ -170,6 +200,18 @@ namespace GameFrameX.Payment.Runtime
         [UnityEngine.Scripting.Preserve]
         public void Buy(string productId, PaymentProductType productType, string orderId, string offerToken = "", string customData = "")
         {
+            if (string.IsNullOrEmpty(productId))
+            {
+                Log.Warning("Product ID is null or empty.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(orderId))
+            {
+                Log.Warning("Order ID is null or empty.");
+                return;
+            }
+
             _paymentManager.Buy(productId, productType, orderId, offerToken, customData);
         }
     }
