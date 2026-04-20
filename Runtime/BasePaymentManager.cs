@@ -101,9 +101,9 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="productId">产品ID或SKU</param>
         /// <param name="offerToken">订阅优惠令牌，仅订阅商品需要</param>
         /// <param name="orderId">订单ID</param>
-        /// <param name="obfuscatedProfileId">自定义数据</param>
+        /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
-        public abstract void BuyInApp(string productId, string orderId, string offerToken = "", string obfuscatedProfileId = "");
+        public abstract void BuyInApp(string productId, string orderId, string offerToken = "", string customData = "");
 
         /// <summary>
         /// 购买 订阅商品
@@ -111,9 +111,9 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="productId">产品ID或SKU</param>
         /// <param name="offerToken">订阅优惠令牌，仅订阅商品需要</param>
         /// <param name="orderId">订单ID</param>
-        /// <param name="obfuscatedProfileId">自定义数据</param>
+        /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
-        public abstract void BuySubs(string productId, string orderId, string offerToken = "", string obfuscatedProfileId = "");
+        public abstract void BuySubs(string productId, string orderId, string offerToken = "", string customData = "");
 
         /// <summary>
         /// 购买
@@ -122,9 +122,9 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="productType">产品类型，inapp/subs</param>
         /// <param name="offerToken">订阅优惠令牌，仅订阅商品需要</param>
         /// <param name="orderId">订单ID</param>
-        /// <param name="obfuscatedProfileId">自定义数据</param>
+        /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
-        public abstract void Buy(string productId, string productType, string orderId, string offerToken = "", string obfuscatedProfileId = "");
+        public abstract void Buy(string productId, string productType, string orderId, string offerToken = "", string customData = "");
 
         protected override void Update(float elapseSeconds, float realElapseSeconds)
         {
