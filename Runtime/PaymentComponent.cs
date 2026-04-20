@@ -131,9 +131,9 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
-        public void Buy(string productId, string productType, string offerToken, string orderId, string customData)
+        public void Buy(string productId, string productType, string orderId, string offerToken = "", string customData = "")
         {
-            _paymentManager.Buy(productId, productType, offerToken, orderId, customData);
+            _paymentManager.Buy(productId, productType, orderId, offerToken, customData);
         }
     }
 }
