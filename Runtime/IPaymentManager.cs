@@ -51,9 +51,9 @@ namespace GameFrameX.Payment.Runtime
         /// <summary>
         /// 查询购买记录
         /// </summary>
-        /// <param name="productType">产品类型，inapp/subs</param>
+        /// <param name="productType">产品类型</param>
         [UnityEngine.Scripting.Preserve]
-        void QueryPurchases(string productType);
+        void QueryPurchases(PaymentProductType productType);
 
         /// <summary>
         /// 消耗购买
@@ -94,11 +94,11 @@ namespace GameFrameX.Payment.Runtime
         /// 购买
         /// </summary>
         /// <param name="productId">产品ID或SKU</param>
-        /// <param name="productType">产品类型，inapp/subs</param>
+        /// <param name="productType">产品类型</param>
         /// <param name="offerToken">订阅优惠令牌，仅订阅商品需要</param>
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
-        void Buy(string productId, string productType, string orderId, string offerToken = "", string customData = "");
+        void Buy(string productId, PaymentProductType productType, string orderId, string offerToken = "", string customData = "");
     }
 }
