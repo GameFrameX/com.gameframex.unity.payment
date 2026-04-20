@@ -37,7 +37,7 @@ namespace GameFrameX.Payment.Runtime
         [UnityEngine.Scripting.Preserve]
         public override bool IsReady()
         {
-            return true;
+            return false;
         }
 
         /// <summary>
