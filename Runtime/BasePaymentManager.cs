@@ -102,6 +102,7 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="offerToken">订阅优惠令牌，仅订阅商品需要</param>
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
+        [Obsolete("请使用 Buy(PurchaseParams) 替代")]
         [UnityEngine.Scripting.Preserve]
         public abstract void BuyInApp(string productId, string orderId, string offerToken = "", string customData = "");
 
@@ -112,6 +113,7 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="offerToken">订阅优惠令牌，仅订阅商品需要</param>
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
+        [Obsolete("请使用 Buy(PurchaseParams) 替代")]
         [UnityEngine.Scripting.Preserve]
         public abstract void BuySubs(string productId, string orderId, string offerToken = "", string customData = "");
 
@@ -123,8 +125,16 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="offerToken">订阅优惠令牌，仅订阅商品需要</param>
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
+        [Obsolete("请使用 Buy(PurchaseParams) 替代")]
         [UnityEngine.Scripting.Preserve]
         public abstract void Buy(string productId, PaymentProductType productType, string orderId, string offerToken = "", string customData = "");
+
+        /// <summary>
+        /// 购买（推荐使用）
+        /// </summary>
+        /// <param name="purchaseParams">购买参数，各渠道可使用对应子类传入渠道特有参数</param>
+        [UnityEngine.Scripting.Preserve]
+        public abstract void Buy(PurchaseParams purchaseParams);
 
         protected override void Update(float elapseSeconds, float realElapseSeconds)
         {

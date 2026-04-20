@@ -66,7 +66,9 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
+#pragma warning disable CS0809
         public override void BuyInApp(string productId, string orderId, string offerToken = "", string customData = "")
+#pragma warning restore CS0809
         {
         }
 
@@ -78,7 +80,9 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
+#pragma warning disable CS0809
         public override void BuySubs(string productId, string orderId, string offerToken = "", string customData = "")
+#pragma warning restore CS0809
         {
         }
 
@@ -91,7 +95,18 @@ namespace GameFrameX.Payment.Runtime
         /// <param name="orderId">订单ID</param>
         /// <param name="customData">自定义数据</param>
         [UnityEngine.Scripting.Preserve]
+#pragma warning disable CS0809
         public override void Buy(string productId, PaymentProductType productType, string orderId, string offerToken = "", string customData = "")
+#pragma warning restore CS0809
+        {
+        }
+
+        /// <summary>
+        /// 购买（推荐使用）
+        /// </summary>
+        /// <param name="purchaseParams">购买参数</param>
+        [UnityEngine.Scripting.Preserve]
+        public override void Buy(PurchaseParams purchaseParams)
         {
         }
 
