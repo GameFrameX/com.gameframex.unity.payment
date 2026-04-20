@@ -68,6 +68,8 @@ namespace GameFrameX.Payment.Runtime
             componentType = m_componentAndroidType;
 #elif UNITY_IOS
             componentType = m_componentIOSType;
+#else
+            componentType = typeof(DefaultPaymentManager).FullName;
 #endif
             ImplementationComponentType = Utility.Assembly.GetType(componentType);
             InterfaceComponentType = typeof(IPaymentManager);
