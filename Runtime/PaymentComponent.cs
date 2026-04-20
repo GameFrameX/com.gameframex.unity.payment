@@ -4,6 +4,7 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using System;
 using System.Collections.Generic;
 using GameFrameX.Runtime;
 using UnityEngine;
@@ -21,6 +22,42 @@ namespace GameFrameX.Payment.Runtime
         private IPaymentManager _paymentManager;
         [SerializeField] private string m_componentAndroidType = "GameFrameX.Payment.Google.Runtime.GooglePaymentManager";
         [SerializeField] private string m_componentIOSType = "GameFrameX.Payment.Apple.Runtime.ApplePaymentManager";
+
+        /// <summary>
+        /// 购买成功事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnPurchaseSuccess
+        {
+            add { _paymentManager.OnPurchaseSuccess += value; }
+            remove { _paymentManager.OnPurchaseSuccess -= value; }
+        }
+
+        /// <summary>
+        /// 购买失败事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnPurchaseFailed
+        {
+            add { _paymentManager.OnPurchaseFailed += value; }
+            remove { _paymentManager.OnPurchaseFailed -= value; }
+        }
+
+        /// <summary>
+        /// 查询购买记录结果事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnQueryPurchasesResult
+        {
+            add { _paymentManager.OnQueryPurchasesResult += value; }
+            remove { _paymentManager.OnQueryPurchasesResult -= value; }
+        }
+
+        /// <summary>
+        /// 消耗购买结果事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnConsumePurchaseResult
+        {
+            add { _paymentManager.OnConsumePurchaseResult += value; }
+            remove { _paymentManager.OnConsumePurchaseResult -= value; }
+        }
 
         /// <summary>
         /// 游戏框架组件初始化。

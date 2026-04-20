@@ -4,6 +4,7 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using System;
 using System.Collections.Generic;
 using GameFrameX.Runtime;
 
@@ -12,9 +13,49 @@ namespace GameFrameX.Payment.Runtime
     [UnityEngine.Scripting.Preserve]
     public abstract class BasePaymentManager : GameFrameworkModule, IPaymentManager
     {
+        /// <summary>
+        /// 购买成功事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnPurchaseSuccess;
+
+        /// <summary>
+        /// 购买失败事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnPurchaseFailed;
+
+        /// <summary>
+        /// 查询购买记录结果事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnQueryPurchasesResult;
+
+        /// <summary>
+        /// 消耗购买结果事件
+        /// </summary>
+        public event EventHandler<PaymentEventArgs> OnConsumePurchaseResult;
+
         [UnityEngine.Scripting.Preserve]
         protected BasePaymentManager()
         {
+        }
+
+        protected void RaisePurchaseSuccess(PaymentEventArgs e)
+        {
+            OnPurchaseSuccess?.Invoke(this, e);
+        }
+
+        protected void RaisePurchaseFailed(PaymentEventArgs e)
+        {
+            OnPurchaseFailed?.Invoke(this, e);
+        }
+
+        protected void RaiseQueryPurchasesResult(PaymentEventArgs e)
+        {
+            OnQueryPurchasesResult?.Invoke(this, e);
+        }
+
+        protected void RaiseConsumePurchaseResult(PaymentEventArgs e)
+        {
+            OnConsumePurchaseResult?.Invoke(this, e);
         }
 
         /// <summary>
