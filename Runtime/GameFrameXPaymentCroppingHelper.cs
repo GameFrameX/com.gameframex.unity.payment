@@ -18,6 +18,11 @@ namespace GameFrameX.Payment.Runtime
             _ = typeof(PaymentComponent);
             _ = typeof(BasePaymentManager);
             _ = typeof(IPaymentManager);
+            _ = typeof(DefaultPaymentManager);
+            _ = typeof(PurchaseParams);
+            _ = typeof(PaymentEventArgs);
+            _ = typeof(PaymentProductType);
+            _ = typeof(PaymentResultCode);
         }
     }
 }
