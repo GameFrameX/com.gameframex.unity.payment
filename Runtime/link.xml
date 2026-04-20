@@ -1,0 +1,3 @@
+<linker>
+  <assembly fullname="GameFrameX.Payment.Runtime" preserve="all"/>
+</linker>
