@@ -21,6 +21,8 @@ namespace GameFrameX.Payment.Editor
     {
         private GUIContent m_componentAndroidTypeGUIContent = new GUIContent("Android平台支付组件");
         private GUIContent m_componentIOSTypeGUIContent = new GUIContent("iOS平台支付组件");
+        private GUIContent m_componentWebGLTypeGUIContent = new GUIContent("WebGL平台支付组件");
+        private GUIContent m_componentPCTypeGUIContent = new GUIContent("PC平台支付组件");
 
         private SerializedProperty ComponentAndroidType = null;
         private string[] ComponentAndroidTypeNames = null;
@@ -29,6 +31,14 @@ namespace GameFrameX.Payment.Editor
         private SerializedProperty ComponentIOSType = null;
         private string[] ComponentIOSTypeNames = null;
         private int ComponentIOSTypeNameIndex = 0;
+
+        private SerializedProperty ComponentWebGLType = null;
+        private string[] ComponentWebGLTypeNames = null;
+        private int ComponentWebGLTypeNameIndex = 0;
+
+        private SerializedProperty ComponentPCType = null;
+        private string[] ComponentPCTypeNames = null;
+        private int ComponentPCTypeNameIndex = 0;
 
         public override void OnInspectorGUI()
         {
@@ -53,6 +63,22 @@ namespace GameFrameX.Payment.Editor
                     ComponentIOSTypeNameIndex = componentIOSTypeNameIndex;
                     ComponentIOSType.stringValue = componentIOSTypeNameIndex <= 0 ? null : ComponentIOSTypeNames[componentIOSTypeNameIndex];
                 }
+
+                EditorGUILayout.LabelField(m_componentWebGLTypeGUIContent);
+                int componentWebGLTypeNameIndex = EditorGUILayout.Popup("Component WebGL Type", ComponentWebGLTypeNameIndex, ComponentWebGLTypeNames);
+                if (componentWebGLTypeNameIndex != ComponentWebGLTypeNameIndex)
+                {
+                    ComponentWebGLTypeNameIndex = componentWebGLTypeNameIndex;
+                    ComponentWebGLType.stringValue = componentWebGLTypeNameIndex <= 0 ? null : ComponentWebGLTypeNames[componentWebGLTypeNameIndex];
+                }
+
+                EditorGUILayout.LabelField(m_componentPCTypeGUIContent);
+                int componentPCTypeNameIndex = EditorGUILayout.Popup("Component PC Type", ComponentPCTypeNameIndex, ComponentPCTypeNames);
+                if (componentPCTypeNameIndex != ComponentPCTypeNameIndex)
+                {
+                    ComponentPCTypeNameIndex = componentPCTypeNameIndex;
+                    ComponentPCType.stringValue = componentPCTypeNameIndex <= 0 ? null : ComponentPCTypeNames[componentPCTypeNameIndex];
+                }
             }
             EditorGUI.EndDisabledGroup();
 
@@ -66,8 +92,12 @@ namespace GameFrameX.Payment.Editor
             base.Enable();
             ComponentAndroidType = serializedObject.FindProperty("m_componentAndroidType");
             ComponentIOSType = serializedObject.FindProperty("m_componentIOSType");
+            ComponentWebGLType = serializedObject.FindProperty("m_componentWebGLType");
+            ComponentPCType = serializedObject.FindProperty("m_componentPCType");
             RefreshTypeNames(ComponentAndroidType, ref ComponentAndroidTypeNames, ref ComponentAndroidTypeNameIndex, typeof(IPaymentManager));
             RefreshTypeNames(ComponentIOSType, ref ComponentIOSTypeNames, ref ComponentIOSTypeNameIndex, typeof(IPaymentManager));
+            RefreshTypeNames(ComponentWebGLType, ref ComponentWebGLTypeNames, ref ComponentWebGLTypeNameIndex, typeof(IPaymentManager));
+            RefreshTypeNames(ComponentPCType, ref ComponentPCTypeNames, ref ComponentPCTypeNameIndex, typeof(IPaymentManager));
         }
 
         protected override void RefreshTypeNames()
