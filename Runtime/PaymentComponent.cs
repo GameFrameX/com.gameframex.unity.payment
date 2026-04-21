@@ -15,6 +15,7 @@ namespace GameFrameX.Payment.Runtime
     /// 支付组件。
     /// </summary>
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(GameFrameXPaymentCroppingHelper))]
     [AddComponentMenu("GameFrameX/Payment")]
     [UnityEngine.Scripting.Preserve]
     public class PaymentComponent : GameFrameworkComponent
