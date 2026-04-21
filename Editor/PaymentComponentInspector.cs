@@ -22,7 +22,8 @@ namespace GameFrameX.Payment.Editor
         private GUIContent m_componentAndroidTypeGUIContent = new GUIContent("Android平台支付组件");
         private GUIContent m_componentIOSTypeGUIContent = new GUIContent("iOS平台支付组件");
         private GUIContent m_componentWebGLTypeGUIContent = new GUIContent("WebGL平台支付组件");
-        private GUIContent m_componentPCTypeGUIContent = new GUIContent("PC平台支付组件");
+        private GUIContent m_componentPCTypeGUIContent = new GUIContent("PC平台支付组件 (Windows/Linux)");
+        private GUIContent m_componentMacTypeGUIContent = new GUIContent("macOS平台支付组件");
 
         private SerializedProperty ComponentAndroidType = null;
         private string[] ComponentAndroidTypeNames = null;
@@ -39,6 +40,10 @@ namespace GameFrameX.Payment.Editor
         private SerializedProperty ComponentPCType = null;
         private string[] ComponentPCTypeNames = null;
         private int ComponentPCTypeNameIndex = 0;
+
+        private SerializedProperty ComponentMacType = null;
+        private string[] ComponentMacTypeNames = null;
+        private int ComponentMacTypeNameIndex = 0;
 
         public override void OnInspectorGUI()
         {
@@ -79,6 +84,14 @@ namespace GameFrameX.Payment.Editor
                     ComponentPCTypeNameIndex = componentPCTypeNameIndex;
                     ComponentPCType.stringValue = componentPCTypeNameIndex <= 0 ? null : ComponentPCTypeNames[componentPCTypeNameIndex];
                 }
+
+                EditorGUILayout.LabelField(m_componentMacTypeGUIContent);
+                int componentMacTypeNameIndex = EditorGUILayout.Popup("Component Mac Type", ComponentMacTypeNameIndex, ComponentMacTypeNames);
+                if (componentMacTypeNameIndex != ComponentMacTypeNameIndex)
+                {
+                    ComponentMacTypeNameIndex = componentMacTypeNameIndex;
+                    ComponentMacType.stringValue = componentMacTypeNameIndex <= 0 ? null : ComponentMacTypeNames[componentMacTypeNameIndex];
+                }
             }
             EditorGUI.EndDisabledGroup();
 
@@ -94,10 +107,12 @@ namespace GameFrameX.Payment.Editor
             ComponentIOSType = serializedObject.FindProperty("m_componentIOSType");
             ComponentWebGLType = serializedObject.FindProperty("m_componentWebGLType");
             ComponentPCType = serializedObject.FindProperty("m_componentPCType");
+            ComponentMacType = serializedObject.FindProperty("m_componentMacType");
             RefreshTypeNames(ComponentAndroidType, ref ComponentAndroidTypeNames, ref ComponentAndroidTypeNameIndex, typeof(IPaymentManager));
             RefreshTypeNames(ComponentIOSType, ref ComponentIOSTypeNames, ref ComponentIOSTypeNameIndex, typeof(IPaymentManager));
             RefreshTypeNames(ComponentWebGLType, ref ComponentWebGLTypeNames, ref ComponentWebGLTypeNameIndex, typeof(IPaymentManager));
             RefreshTypeNames(ComponentPCType, ref ComponentPCTypeNames, ref ComponentPCTypeNameIndex, typeof(IPaymentManager));
+            RefreshTypeNames(ComponentMacType, ref ComponentMacTypeNames, ref ComponentMacTypeNameIndex, typeof(IPaymentManager));
         }
 
         protected override void RefreshTypeNames()

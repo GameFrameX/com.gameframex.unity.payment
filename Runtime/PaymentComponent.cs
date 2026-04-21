@@ -25,6 +25,7 @@ namespace GameFrameX.Payment.Runtime
         [SerializeField] private string m_componentIOSType = "GameFrameX.Payment.Apple.Runtime.ApplePaymentManager";
         [SerializeField] private string m_componentWebGLType = "GameFrameX.Payment.WebGL.Runtime.WebGLPaymentManager";
         [SerializeField] private string m_componentPCType = "GameFrameX.Payment.PC.Runtime.PCPaymentManager";
+        [SerializeField] private string m_componentMacType = "GameFrameX.Payment.Apple.Runtime.ApplePaymentManager";
 
         /// <summary>
         /// 购买成功事件
@@ -73,8 +74,10 @@ namespace GameFrameX.Payment.Runtime
             componentType = m_componentIOSType;
 #elif UNITY_WEBGL
             componentType = m_componentWebGLType;
-#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX
             componentType = m_componentPCType;
+#elif UNITY_STANDALONE_OSX
+            componentType = m_componentMacType;
 #else
             componentType = typeof(DefaultPaymentManager).FullName;
 #endif
