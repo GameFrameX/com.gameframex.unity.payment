@@ -1,16 +1,49 @@
-# GameFrameX.Payment
+<p align="center">
+  <img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
+</p>
 
-GameFrameX.Payment 是一个 Unity 支付包，为应用内购买和订阅提供统一的接口，支持 Google Play 和 Apple App Store。
+<h1 align="center">Game Frame X Payment</h1>
 
-## 特性
+<p align="center">
+  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
+    <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
+  </a>
+  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
+  </a>
+  <a href="https://gameframex.doc.alianblank.com">
+    <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
+  </a>
+</p>
 
-- 应用内购买和订阅的统一接口。
-- 支持 Google Play 和 Apple App Store。
-- 易于集成和使用。
+<p align="center">
+  All-in-One Solution for Indie Game Development · Empowering Indie Developers' Dreams
+</p>
 
-## 安装
+<p align="center">
+  <a href="https://gameframex.doc.alianblank.com">Documentation</a> ·
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQ Group</a> ·
+  Language: <strong>English</strong> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a>
+</p>
 
-要使用此包，请将以下行添加到您的 `manifest.json` 文件中：
+---
+
+## Project Overview
+
+**Payment Component** - A Unity payment package that provides a unified interface for in-app purchases and subscriptions, supporting Google Play and Apple App Store.
+
+### Features
+
+- Unified interface for in-app purchases and subscriptions
+- Support for Google Play and Apple App Store
+- Easy to integrate and use
+
+## Quick Start
+
+### Installation
+
+Add the following to the `dependencies` section of your project's `manifest.json`:
 
 ```json
 {
@@ -20,13 +53,13 @@ GameFrameX.Payment 是一个 Unity 支付包，为应用内购买和订阅提供
 }
 ```
 
-## 如何使用
+Alternatively, use `Git URL` in Unity's Package Manager or download and place in the `Packages` directory.
 
-1.  将 `PaymentComponent` 添加到场景中的 GameObject。
-2.  获取 `PaymentComponent` 实例并初始化它。
-3.  使用 `BuyInApp` 或 `BuySubs` 方法发起购买。
+### Usage Examples
 
-### 示例
+1. Add `PaymentComponent` to a GameObject in your scene.
+2. Get the `PaymentComponent` instance and initialize it.
+3. Use `BuyInApp` or `BuySubs` methods to initiate purchases.
 
 ```csharp
 using GameFrameX.Payment.Runtime;
@@ -49,66 +82,82 @@ public class PaymentExample : MonoBehaviour
 }
 ```
 
-## API
+## API Reference
 
 ### `Init(bool isDebug = false, bool isClientVerify = true)`
 
-初始化支付管理器。
+Initialize the payment manager.
 
--   `isDebug`: 是否使用沙盒模式。
--   `isClientVerify`: 是否执行客户端购买验证。
+- `isDebug`: Whether to use sandbox mode.
+- `isClientVerify`: Whether to perform client-side purchase verification.
 
 ### `IsReady()`
 
-检查支付系统是否准备就绪。
+Check if the payment system is ready.
 
 ### `SetPredefinedProductIds(List<string> inAppProductIds, List<string> subsProductIds)`
 
-设置预定义的商品 ID 用于预加载。
+Set predefined product IDs for preloading.
 
--   `inAppProductIds`: 应用内商品 ID 列表。
--   `subsProductIds`: 订阅商品 ID 列表。
+- `inAppProductIds`: List of in-app product IDs.
+- `subsProductIds`: List of subscription product IDs.
 
 ### `QueryPurchases(string productType)`
 
-查询购买历史。
+Query purchase history.
 
--   `productType`: 商品类型，"inapp" 或 "subs"。
+- `productType`: Product type, "inapp" or "subs".
 
 ### `ConsumePurchase(string purchaseToken)`
 
-消耗购买。
+Consume a purchase.
 
--   `purchaseToken`: 购买令牌。
+- `purchaseToken`: The purchase token.
 
 ### `BuyInApp(string productId, string orderId, string offerToken = "", string customData = "")`
 
-发起应用内购买。
+Initiate an in-app purchase.
 
--   `productId`: 商品 ID 或 SKU。
--   `orderId`: 订单 ID。
--   `offerToken`: 订阅优惠令牌（仅限订阅）。
--   `customData`: 自定义数据。
+- `productId`: Product ID or SKU.
+- `orderId`: Order ID.
+- `offerToken`: Subscription offer token (subscriptions only).
+- `customData`: Custom data.
 
 ### `BuySubs(string productId, string orderId, string offerToken = "", string customData = "")`
 
-发起订阅购买。
+Initiate a subscription purchase.
 
--   `productId`: 商品 ID 或 SKU。
--   `orderId`: 订单 ID。
--   `offerToken`: 订阅优惠令牌。
--   `customData`: 自定义数据。
+- `productId`: Product ID or SKU.
+- `orderId`: Order ID.
+- `offerToken`: Subscription offer token.
+- `customData`: Custom data.
 
 ### `Buy(string productId, string productType, string offerToken, string orderId, string customData)`
 
-发起购买。
+Initiate a purchase.
 
--   `productId`: 商品 ID 或 SKU。
--   `productType`: 商品类型，"inapp" 或 "subs"。
--   `offerToken`: 订阅优惠令牌。
--   `orderId`: 订单 ID。
--   `customData`: 自定义数据。
+- `productId`: Product ID or SKU.
+- `productType`: Product type, "inapp" or "subs".
+- `offerToken`: Subscription offer token.
+- `orderId`: Order ID.
+- `customData`: Custom data.
 
-## 许可证
+## Platform Support
 
-该项目根据 MIT 许可证授权 - 有关详细信息，请参阅 [LICENSE.md](LICENSE.md) 文件。
+| Platform | Supported |
+|----------|-----------|
+| Android (Google Play) | Yes |
+| iOS (App Store) | Yes |
+
+## Documentation & Resources
+
+- [Documentation](https://gameframex.doc.alianblank.com)
+- [GitHub Repository](https://github.com/GameFrameX/com.gameframex.unity.payment)
+
+## Community & Support
+
+- QQ Group: Join via [QR Code](https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6)
+
+## License
+
+This project is licensed under the terms of the [LICENSE](LICENSE) file.
