@@ -13,6 +13,9 @@
     "url": "git+https://github.com/gameframex/com.gameframex.unity.payment.git",
     "type": "git"
   },
+  "documentationUrl": "https://gameframex.doc.alianblank.com",
+  "changelogUrl": "https://github.com/gameframex/com.gameframex.unity.payment/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/gameframex/com.gameframex.unity.payment/blob/main/LICENSE.md",
   "author": {
     "name": "Blank",
     "email": "alianblank@outlook.com",
