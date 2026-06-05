@@ -1,31 +1,32 @@
-<p align="center">
-  <img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
-</p>
+<div align="center">
 
-<h1 align="center">Game Frame X Payment</h1>
+<img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
 
-<p align="center">
-  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
-    <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
-  </a>
-  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
-  </a>
-  <a href="https://gameframex.doc.alianblank.com">
-    <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
-  </a>
-</p>
+# Game Frame X Payment
 
-<p align="center">
-  独立游戏前后端一体化解决方案 · 独立游戏开发者的圆梦大使
-</p>
+<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
+  <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
+</a>
+<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
+  <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
+</a>
+<a href="https://gameframex.doc.alianblank.com">
+  <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
+</a>
 
-<p align="center">
-  <a href="https://gameframex.doc.alianblank.com">文档</a> ·
-  <a href="#快速开始">快速开始</a> ·
-  <a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQ群</a> ·
-  语言: <a href="README.md">English</a> | <strong>简体中文</strong> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a>
-</p>
+独立游戏前后端一体化解决方案 · 独立游戏开发者的圆梦大使
+
+<br />
+
+<a href="https://gameframex.doc.alianblank.com">文档</a> ·
+<a href="#快速开始">快速开始</a> ·
+<a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQ群</a>
+
+<br />
+
+语言: <a href="README.md">English</a> | <strong>简体中文</strong> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a>
+
+</div>
 
 ---
 

@@ -1,31 +1,32 @@
-<p align="center">
-  <img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
-</p>
+<div align="center">
 
-<h1 align="center">Game Frame X Payment</h1>
+<img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
 
-<p align="center">
-  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
-    <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
-  </a>
-  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
-  </a>
-  <a href="https://gameframex.doc.alianblank.com">
-    <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
-  </a>
-</p>
+# Game Frame X Payment
 
-<p align="center">
-  インディゲーム開発者向けオールインワンソリューション · インディ開発者の夢を支援
-</p>
+<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
+  <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
+</a>
+<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
+  <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
+</a>
+<a href="https://gameframex.doc.alianblank.com">
+  <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
+</a>
 
-<p align="center">
-  <a href="https://gameframex.doc.alianblank.com">ドキュメント</a> ·
-  <a href="#クイックスタート">クイックスタート</a> ·
-  <a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQグループ</a> ·
-  言語: <a href="README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <strong>日本語</strong> | <a href="README.ko.md">한국어</a>
-</p>
+インディゲーム開発者向けオールインワンソリューション · インディ開発者の夢を支援
+
+<br />
+
+<a href="https://gameframex.doc.alianblank.com">ドキュメント</a> ·
+<a href="#クイックスタート">クイックスタート</a> ·
+<a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQグループ</a>
+
+<br />
+
+言語: <a href="README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <strong>日本語</strong> | <a href="README.ko.md">한국어</a>
+
+</div>
 
 ---
 

@@ -1,31 +1,32 @@
-<p align="center">
-  <img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
-</p>
+<div align="center">
 
-<h1 align="center">Game Frame X Payment</h1>
+<img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
 
-<p align="center">
-  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
-    <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
-  </a>
-  <a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
-  </a>
-  <a href="https://gameframex.doc.alianblank.com">
-    <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
-  </a>
-</p>
+# Game Frame X Payment
 
-<p align="center">
-  인디 게임 개발자를 위한 올인원 솔루션 · 인디 개발자의 꿈을 실현
-</p>
+<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
+  <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
+</a>
+<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
+  <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
+</a>
+<a href="https://gameframex.doc.alianblank.com">
+  <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
+</a>
 
-<p align="center">
-  <a href="https://gameframex.doc.alianblank.com">문서</a> ·
-  <a href="#빠른-시작">빠른 시작</a> ·
-  <a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQ 그룹</a> ·
-  언어: <a href="README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <strong>한국어</strong>
-</p>
+인디 게임 개발자를 위한 올인원 솔루션 · 인디 개발자의 꿈을 실현
+
+<br />
+
+<a href="https://gameframex.doc.alianblank.com">문서</a> ·
+<a href="#빠른-시작">빠른 시작</a> ·
+<a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQ 그룹</a>
+
+<br />
+
+언어: <a href="README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ja.md">日本語</a> | <strong>한국어</strong>
+
+</div>
 
 ---
 
