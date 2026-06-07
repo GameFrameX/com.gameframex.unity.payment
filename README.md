@@ -63,7 +63,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## API Reference
 
 ### `Init(bool isDebug = false, bool isClientVerify = true)`
@@ -142,4 +141,4 @@ Initiate a purchase.
 
 ## License
 
-This project is licensed under the terms of the [LICENSE](LICENSE) file.
+See [LICENSE.md](LICENSE.md) for license information.

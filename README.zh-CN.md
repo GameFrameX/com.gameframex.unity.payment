@@ -63,7 +63,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## API 参考
 
 ### `Init(bool isDebug = false, bool isClientVerify = true)`
@@ -142,4 +141,4 @@ Then add the package to `dependencies`:
 
 ## 开源协议
 
-本项目基于 [LICENSE](LICENSE) 文件中定义的条款授权。
+详见 [LICENSE.md](LICENSE.md) 文件。
