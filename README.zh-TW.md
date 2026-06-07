@@ -1,35 +1,24 @@
 <div align="center">
 
-<img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="GameFrameX Logo" width="160" />
+<img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="Game Frame X Logo" width="160" />
 
 # Game Frame X Payment
 
-<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/releases">
-  <img src="https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment" alt="Version" />
-</a>
-<a href="https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE">
-  <img src="https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment" alt="License" />
-</a>
-<a href="https://gameframex.doc.alianblank.com">
-  <img src="https://img.shields.io/badge/Documentation-online-blue" alt="Documentation" />
-</a>
+[![License](https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.payment)](https://github.com/GameFrameX/com.gameframex.unity.payment/blob/main/LICENSE.md)
+[![Version](https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.payment)](https://github.com/GameFrameX/com.gameframex.unity.payment/releases)
+[![Documentation](https://img.shields.io/badge/Documentation-docs-blue)](https://gameframex.doc.alianblank.com)
 
 獨立遊戲前後端一體化解決方案 · 獨立遊戲開發者的圓夢大使
 
 <br />
 
-<a href="https://gameframex.doc.alianblank.com">文檔</a> ·
-<a href="#快速開始">快速開始</a> ·
-<a href="https://qm.qq.com/cgi-bin/qm/qr?k=ikT9gA5m2sKwOyNOfYmQvSAPK_c3GmD6">QQ群</a>
+[文檔](https://gameframex.doc.alianblank.com) · [快速開始](#quick-start) · [QQ群](https://qm.qq.com/q/5U9Fvebw)
 
 <br />
 
-語言: <a href="README.md">English</a> | <a href="README.zh-CN.md">简体中文</a> | <strong>繁體中文</strong> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a>
+[English](README.md) | [简体中文](README.zh-CN.md) | **繁體中文** | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 </div>
-
----
-
 ## 項目簡介
 
 **Payment 支付組件** - Unity 支付套件，為應用內購買和訂閱提供統一的介面，支援 Google Play 和 Apple App Store。
