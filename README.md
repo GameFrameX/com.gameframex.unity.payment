@@ -35,44 +35,34 @@ All-in-One Solution for Indie Game Development · Empowering Indie Developers' D
 
 ### Installation
 
-Add the following to the `dependencies` section of your project's `manifest.json`:
+Edit your Unity project's `Packages/manifest.json` and add the `scopedRegistries` section:
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` controls which packages are resolved through this registry. Only packages whose names start with `com.gameframex` will be fetched from it.
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.payment": "https://github.com/GameFrameX/com.gameframex.unity.payment.git"
+    "com.gameframex.unity.payment": "1.1.0"
   }
 }
 ```
 
-Alternatively, use `Git URL` in Unity's Package Manager or download and place in the `Packages` directory.
-
-### Usage Examples
-
-1. Add `PaymentComponent` to a GameObject in your scene.
-2. Get the `PaymentComponent` instance and initialize it.
-3. Use `BuyInApp` or `BuySubs` methods to initiate purchases.
-
-```csharp
-using GameFrameX.Payment.Runtime;
-using UnityEngine;
-
-public class PaymentExample : MonoBehaviour
-{
-    private PaymentComponent _paymentComponent;
-
-    void Start()
-    {
-        _paymentComponent = FindObjectOfType<PaymentComponent>();
-        _paymentComponent.Init();
-    }
-
-    public void BuyProduct(string productId)
-    {
-        _paymentComponent.BuyInApp(productId, "orderId");
-    }
-}
-```
 
 ## API Reference
 

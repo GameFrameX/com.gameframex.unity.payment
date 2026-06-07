@@ -35,44 +35,34 @@
 
 ### 安装
 
-在 `manifest.json` 文件的 `dependencies` 节点下添加以下内容：
+编辑 Unity 项目的 `Packages/manifest.json`，添加 `scopedRegistries` 部分：
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` 控制哪些包通过此注册表解析。只有以 `com.gameframex` 开头的包才会从这个注册表获取。
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.payment": "https://github.com/GameFrameX/com.gameframex.unity.payment.git"
+    "com.gameframex.unity.payment": "1.1.0"
   }
 }
 ```
 
-或在 Unity 的 `Packages Manager` 中使用 `Git URL` 的方式添加，或直接下载仓库放置到 `Packages` 目录下。
-
-### 使用示例
-
-1. 将 `PaymentComponent` 添加到场景中的 GameObject。
-2. 获取 `PaymentComponent` 实例并初始化。
-3. 使用 `BuyInApp` 或 `BuySubs` 方法发起购买。
-
-```csharp
-using GameFrameX.Payment.Runtime;
-using UnityEngine;
-
-public class PaymentExample : MonoBehaviour
-{
-    private PaymentComponent _paymentComponent;
-
-    void Start()
-    {
-        _paymentComponent = FindObjectOfType<PaymentComponent>();
-        _paymentComponent.Init();
-    }
-
-    public void BuyProduct(string productId)
-    {
-        _paymentComponent.BuyInApp(productId, "orderId");
-    }
-}
-```
 
 ## API 参考
 

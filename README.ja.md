@@ -35,44 +35,34 @@
 
 ### インストール
 
-プロジェクトの `manifest.json` の `dependencies` セクションに以下を追加：
+Unity プロジェクトの `Packages/manifest.json` を編集し、`scopedRegistries` セクションを追加してください：
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` は、どのパッケージをこのレジストリから解決するかを制御します。`com.gameframex` で始まるパッケージのみがこのレジストリから取得されます。
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.payment": "https://github.com/GameFrameX/com.gameframex.unity.payment.git"
+    "com.gameframex.unity.payment": "1.1.0"
   }
 }
 ```
 
-または、Unity の `Package Manager` で `Git URL` を使用するか、リポジトリをダウンロードして `Packages` ディレクトリに配置してください。
-
-### 使用例
-
-1. シーン内の GameObject に `PaymentComponent` を追加します。
-2. `PaymentComponent` インスタンスを取得して初期化します。
-3. `BuyInApp` または `BuySubs` メソッドを使用して購入を開始します。
-
-```csharp
-using GameFrameX.Payment.Runtime;
-using UnityEngine;
-
-public class PaymentExample : MonoBehaviour
-{
-    private PaymentComponent _paymentComponent;
-
-    void Start()
-    {
-        _paymentComponent = FindObjectOfType<PaymentComponent>();
-        _paymentComponent.Init();
-    }
-
-    public void BuyProduct(string productId)
-    {
-        _paymentComponent.BuyInApp(productId, "orderId");
-    }
-}
-```
 
 ## API リファレンス
 
