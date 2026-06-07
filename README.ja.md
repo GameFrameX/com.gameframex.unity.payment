@@ -20,6 +20,7 @@
 [English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | **日本語** | [한국어](README.ko.md)
 
 </div>
+
 ## プロジェクト概要
 
 **Payment コンポーネント** - Unity 支払いパッケージ。アプリ内課金とサブスクリプションのための統一インターフェースを提供し、Google Play と Apple App Store をサポートします。
