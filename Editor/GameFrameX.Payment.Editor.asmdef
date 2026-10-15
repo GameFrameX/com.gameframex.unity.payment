@@ -1,9 +1,8 @@
 {
-  "name": "GameFrameX.Payment.Google.Editor",
+  "name": "GameFrameX.Payment.Editor",
   "references": [
     "GameFrameX.Editor",
     "GameFrameX.Runtime",
-    "GameFrameX.Payment.Google.Runtime",
     "GameFrameX.Payment.Runtime"
   ],
   "includePlatforms": [
