@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/gameframex/com.gameframex.unity.payment/compare/1.1.0...2.0.0) (2026-10-15)
+
+
+### Features
+
+* **payment:** 新增支付渠道注册表与渠道路由购买 ([83c8d74](https://github.com/gameframex/com.gameframex.unity.payment/commit/83c8d749887736e4c8a916524358a0bfc7e1e86d))
+* **payment:** 模块基类迁移到 IGameFrameworkModule 接口契约 ([477a4cf](https://github.com/gameframex/com.gameframex.unity.payment/commit/477a4cf294477d048048a4ef73c4da1bf57436fd))
+
+
+### BREAKING CHANGES
+
+* **payment:** 移除 GameFrameworkModule 抽象基类继承，需框架 3.0 及以上。
+
 # [2.0.0](https://github.com/gameframex/com.gameframex.unity.payment/compare/1.1.0...2.0.0) (2026-10-08)
 
 
