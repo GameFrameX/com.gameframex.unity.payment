@@ -18,9 +18,11 @@ namespace GameFrameX.Payment.Runtime
     [RequireComponent(typeof(GameFrameXPaymentCroppingHelper))]
     [AddComponentMenu("GameFrameX/Payment")]
     [UnityEngine.Scripting.Preserve]
+    [GameFrameXAutoComponent(1100)]
     public class PaymentComponent : GameFrameworkComponent
     {
         private IPaymentManager _paymentManager;
+        private readonly HashSet<IPaymentManager> _wiredManagers = new HashSet<IPaymentManager>();
         [SerializeField] private string m_componentAndroidType = "GameFrameX.Payment.Google.Runtime.GooglePaymentManager";
         [SerializeField] private string m_componentIOSType = "GameFrameX.Payment.Apple.Runtime.ApplePaymentManager";
         [SerializeField] private string m_componentWebGLType = "GameFrameX.Payment.WebGL.Runtime.WebGLPaymentManager";
@@ -28,40 +30,25 @@ namespace GameFrameX.Payment.Runtime
         [SerializeField] private string m_componentMacType = "GameFrameX.Payment.Apple.Runtime.ApplePaymentManager";
 
         /// <summary>
-        /// 购买成功事件
+        /// 购买成功事件（平台默认渠道与路由渠道的结果均会触发）
         /// </summary>
-        public event EventHandler<PaymentEventArgs> OnPurchaseSuccess
-        {
-            add { _paymentManager.OnPurchaseSuccess += value; }
-            remove { _paymentManager.OnPurchaseSuccess -= value; }
-        }
+        public event EventHandler<PaymentEventArgs> OnPurchaseSuccess;
 
         /// <summary>
-        /// 购买失败事件
+        /// 购买失败事件（平台默认渠道与路由渠道的结果均会触发）
         /// </summary>
-        public event EventHandler<PaymentEventArgs> OnPurchaseFailed
-        {
-            add { _paymentManager.OnPurchaseFailed += value; }
-            remove { _paymentManager.OnPurchaseFailed -= value; }
-        }
+        public event EventHandler<PaymentEventArgs> OnPurchaseFailed;
 
         /// <summary>
         /// 查询购买记录结果事件
         /// </summary>
-        public event EventHandler<PaymentEventArgs> OnQueryPurchasesResult
-        {
-            add { _paymentManager.OnQueryPurchasesResult += value; }
-            remove { _paymentManager.OnQueryPurchasesResult -= value; }
-        }
+        public event EventHandler<PaymentEventArgs> OnQueryPurchasesResult;
 
         /// <summary>
         /// 消耗购买结果事件
         /// </summary>
-        public event EventHandler<PaymentEventArgs> OnConsumePurchaseResult
-        {
-            add { _paymentManager.OnConsumePurchaseResult += value; }
-            remove { _paymentManager.OnConsumePurchaseResult -= value; }
-        }
+        public event EventHandler<PaymentEventArgs> OnConsumePurchaseResult;
+
 
         /// <summary>
         /// 游戏框架组件初始化。
@@ -91,6 +78,46 @@ namespace GameFrameX.Payment.Runtime
                 Log.Fatal("Pay Manager is invalid.");
                 return;
             }
+
+            WireManagerEvents(_paymentManager);
+        }
+
+        /// <summary>
+        /// 为支付管理器接线路由结果事件（同一管理器只接线一次）
+        /// </summary>
+        private void WireManagerEvents(IPaymentManager manager)
+        {
+            if (manager == null || !_wiredManagers.Add(manager))
+            {
+                return;
+            }
+
+            manager.OnPurchaseSuccess += (sender, e) => OnPurchaseSuccess?.Invoke(this, e);
+            manager.OnPurchaseFailed += (sender, e) => OnPurchaseFailed?.Invoke(this, e);
+            manager.OnQueryPurchasesResult += (sender, e) => OnQueryPurchasesResult?.Invoke(this, e);
+            manager.OnConsumePurchaseResult += (sender, e) => OnConsumePurchaseResult?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// 获取已注册的支付渠道列表（含可用性），用于 UI 展示可用支付方式
+        /// </summary>
+        /// <returns>渠道信息列表</returns>
+        [UnityEngine.Scripting.Preserve]
+        public IReadOnlyList<PaymentChannelInfo> GetAvailableChannels()
+        {
+            return PaymentChannelRegistry.GetAllChannelInfos();
+        }
+
+        /// <summary>
+        /// 渠道是否已注册且当前可用
+        /// </summary>
+        /// <param name="channelId">渠道唯一标识</param>
+        /// <returns>可用返回true，否则返回false</returns>
+        [UnityEngine.Scripting.Preserve]
+        public bool IsChannelAvailable(string channelId)
+        {
+            var manager = PaymentChannelRegistry.GetManager(channelId);
+            return manager != null && manager.IsReady();
         }
 
         /// <summary>
@@ -233,7 +260,7 @@ namespace GameFrameX.Payment.Runtime
         /// <summary>
         /// 购买（推荐使用）
         /// </summary>
-        /// <param name="purchaseParams">购买参数，各渠道可使用对应子类传入渠道特有参数</param>
+        /// <param name="purchaseParams">购买参数，各渠道可使用对应子类传入渠道特有参数；子类绑定的 ChannelId 会自动路由到对应渠道</param>
         [UnityEngine.Scripting.Preserve]
         public void Buy(PurchaseParams purchaseParams)
         {
@@ -255,7 +282,15 @@ namespace GameFrameX.Payment.Runtime
                 return;
             }
 
-            _paymentManager.Buy(purchaseParams);
+            var manager = PaymentChannelRegistry.ResolveManager(_paymentManager, purchaseParams.ChannelId);
+            if (manager == null)
+            {
+                Log.Warning("Payment channel '{0}' is not registered.", purchaseParams.ChannelId);
+                return;
+            }
+
+            WireManagerEvents(manager);
+            manager.Buy(purchaseParams);
         }
     }
 }

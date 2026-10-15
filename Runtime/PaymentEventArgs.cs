@@ -32,36 +32,43 @@ namespace GameFrameX.Payment.Runtime
         /// <summary>
         /// 产品ID
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string ProductId { get; set; }
 
         /// <summary>
         /// 订单ID
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string OrderId { get; set; }
 
         /// <summary>
         /// 购买令牌
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string PurchaseToken { get; set; }
 
         /// <summary>
         /// 支付结果代码
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public PaymentResultCode ResultCode { get; set; }
 
         /// <summary>
         /// 错误消息
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string ErrorMessage { get; set; }
 
         /// <summary>
         /// 原始购买数据（JSON格式）
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string PurchaseData { get; set; }
 
         /// <summary>
         /// 自定义数据
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string CustomData { get; set; }
     }
 }

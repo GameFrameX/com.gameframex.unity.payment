@@ -14,17 +14,27 @@ namespace GameFrameX.Payment.Runtime
         /// <summary>
         /// 产品ID或SKU
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string ProductId { get; set; }
 
         /// <summary>
         /// 订单ID
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public string OrderId { get; set; }
 
         /// <summary>
         /// 产品类型
         /// </summary>
+        [UnityEngine.Scripting.Preserve]
         public PaymentProductType ProductType { get; set; }
+
+        /// <summary>
+        /// 渠道唯一标识。为空时走 PaymentComponent 的平台默认支付管理器；
+        /// 由渠道参数子类在构造时绑定（如 AlipayPurchaseParams 绑定 "alipay"），即可自动路由到对应渠道。
+        /// </summary>
+        [UnityEngine.Scripting.Preserve]
+        public string ChannelId { get; set; }
 
         protected PurchaseParams(string productId, string orderId, PaymentProductType productType)
         {

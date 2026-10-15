@@ -5,14 +5,13 @@
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Payment.Runtime
 {
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     public class GameFrameXPaymentCroppingHelper : MonoBehaviour
     {
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         void Start()
         {
             _ = typeof(PaymentComponent);
@@ -23,6 +22,9 @@ namespace GameFrameX.Payment.Runtime
             _ = typeof(PaymentEventArgs);
             _ = typeof(PaymentProductType);
             _ = typeof(PaymentResultCode);
+            _ = typeof(PaymentChannelRegistration);
+            _ = typeof(PaymentChannelInfo);
+            _ = typeof(PaymentChannelRegistry);
         }
     }
 }
