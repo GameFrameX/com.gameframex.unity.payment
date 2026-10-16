@@ -3,7 +3,7 @@
     "displayName": "Game Frame X Payment",
     "category": "Game Frame X",
     "description": "GameFrameX Payment — Unity in-app purchase package providing a unified IPaymentManager abstraction for one-time purchases and subscriptions. Ships PaymentComponent, BasePaymentManager and a PaymentChannelRegistry that channel packages self-register into at startup, plus PurchaseParams, PaymentEventArgs, PaymentProductType and PaymentChannelInfo models with IL2CPP cropping helpers. Channel adapters for Google Play, Apple App Store, Alipay and Douyin Mini Game plug in as separate packages; available channels are queryable via GetAvailableChannels(). Docs: https://gameframex.doc.alianblank.com\n\nGameFrameX Payment — Unity 应用内购买功能包，提供统一的 IPaymentManager 抽象，支持一次性购买与订阅。包含 PaymentComponent、BasePaymentManager 与支持渠道包启动自注册的 PaymentChannelRegistry，以及 PurchaseParams、PaymentEventArgs、PaymentProductType、PaymentChannelInfo 等模型和 IL2CPP 裁剪保护。Google Play、Apple App Store、支付宝、抖音小游戏等渠道适配以独立包接入，可通过 GetAvailableChannels() 查询可用渠道。文档：https://gameframex.doc.alianblank.com",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "unity": "2019.4",
     "keywords": [
         "Game Frame X"

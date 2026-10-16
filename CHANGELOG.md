@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/gameframex/com.gameframex.unity.payment/compare/2.0.0...3.0.0) (2026-10-16)
+
+
+### Features
+
+* **payment:** 支付渠道收敛为注册表单轴路由 ([8690c96](https://github.com/gameframex/com.gameframex.unity.payment/commit/8690c969bff98e43b65fa4155c137be2a59bed4b))
+
+
+### BREAKING CHANGES
+
+* **payment:** 移除 PaymentComponent 六个平台支付组件槽位字段
+（场景序列化数据将被 Unity 丢弃）；ResolveManager 两参重载替换为
+单参 channelId 形态。
+
 # [2.0.0](https://github.com/gameframex/com.gameframex.unity.payment/compare/1.1.0...2.0.0) (2026-10-15)
 
 
