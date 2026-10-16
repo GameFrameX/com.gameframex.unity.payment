@@ -30,6 +30,7 @@ All-in-One Solution for Indie Game Development · Empowering Indie Developers' D
 - Unified interface for in-app purchases and subscriptions
 - Support for Google Play and Apple App Store
 - Easy to integrate and use
+- Channels self-register into PaymentChannelRegistry and purchases route through it (the module slot is pinned to the main-package `DefaultPaymentManager` facade); with no registered channel, the Editor falls back to simulated payment (a dialog picks success / cancel / failure and raises real events), so the payment flow can be tested without a device
 
 ## Quick Start
 
@@ -129,6 +130,7 @@ Initiate a purchase.
 
 | Platform | Supported |
 |----------|-----------|
+| Editor (Play Mode simulation) | Yes |
 | Android (Google Play) | Yes |
 | iOS (App Store) | Yes |
 

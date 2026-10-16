@@ -30,6 +30,7 @@
 - 应用内购买和订阅的统一接口
 - 支持 Google Play 和 Apple App Store
 - 易于集成和使用
+- 渠道经 PaymentChannelRegistry 自注册路由（模块槽位固定为主包 `DefaultPaymentManager` 门面）；无注册渠道时 Editor 自动退化为模拟支付（弹窗选择成功/取消/失败并回调真实事件），无需设备即可联调支付闭环
 
 ## 快速开始
 
@@ -129,6 +130,7 @@
 
 | 平台 | 支持 |
 |------|------|
+| 编辑器 (Play Mode 模拟) | 是 |
 | Android (Google Play) | 是 |
 | iOS (App Store) | 是 |
 

@@ -30,6 +30,7 @@
 - 인앱 구매 및 구독을 위한 통합 인터페이스
 - Google Play 및 Apple App Store 지원
 - 쉬운 통합 및 사용
+- 채널은 PaymentChannelRegistry에 자동 등록되고 구매는 이를 통해 라우팅됩니다(모듈 슬롯은 메인 패키지 `DefaultPaymentManager` 파사드로 고정). 등록된 채널이 없으면 에디터는 시뮬레이션 결제(대화상자에서 성공/취소/실패 선택 후 실제 이벤트 콜백)로 폴백하여 기기 없이 결제 플로우를 통합 테스트할 수 있습니다
 
 ## 빠른 시작
 
@@ -129,6 +130,7 @@
 
 | 플랫폼 | 지원 |
 |--------|------|
+| 에디터 (Play Mode 시뮬레이션) | 예 |
 | Android (Google Play) | 예 |
 | iOS (App Store) | 예 |
 

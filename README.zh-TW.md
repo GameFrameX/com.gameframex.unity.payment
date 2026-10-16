@@ -30,6 +30,7 @@
 - 應用內購買和訂閱的統一介面
 - 支援 Google Play 和 Apple App Store
 - 易於整合和使用
+- 渠道經 PaymentChannelRegistry 自註冊路由（模組槽位固定為主包 `DefaultPaymentManager` 門面）；無註冊渠道時 Editor 自動退化為模擬支付（彈窗選擇成功/取消/失敗並回呼真實事件），無需裝置即可聯調支付閉環
 
 ## 快速開始
 
@@ -129,6 +130,7 @@
 
 | 平台 | 支援 |
 |------|------|
+| 編輯器 (Play Mode 模擬) | 是 |
 | Android (Google Play) | 是 |
 | iOS (App Store) | 是 |
 
