@@ -23,19 +23,14 @@ namespace GameFrameX.Payment.Runtime
     {
         private IPaymentManager _paymentManager;
         private readonly HashSet<IPaymentManager> _wiredManagers = new HashSet<IPaymentManager>();
-        [SerializeField] private string m_componentAndroidType = "GameFrameX.Payment.Google.Runtime.GooglePaymentManager";
-        [SerializeField] private string m_componentIOSType = "GameFrameX.Payment.Apple.Runtime.ApplePaymentManager";
-        [SerializeField] private string m_componentWebGLType = "GameFrameX.Payment.WebGL.Runtime.WebGLPaymentManager";
-        [SerializeField] private string m_componentPCType = "GameFrameX.Payment.PC.Runtime.PCPaymentManager";
-        [SerializeField] private string m_componentMacType = "GameFrameX.Payment.Apple.Runtime.ApplePaymentManager";
 
         /// <summary>
-        /// 购买成功事件（平台默认渠道与路由渠道的结果均会触发）
+        /// 购买成功事件（默认渠道与显式路由渠道的结果均会触发）
         /// </summary>
         public event EventHandler<PaymentEventArgs> OnPurchaseSuccess;
 
         /// <summary>
-        /// 购买失败事件（平台默认渠道与路由渠道的结果均会触发）
+        /// 购买失败事件（默认渠道与显式路由渠道的结果均会触发）
         /// </summary>
         public event EventHandler<PaymentEventArgs> OnPurchaseFailed;
 
@@ -55,20 +50,9 @@ namespace GameFrameX.Payment.Runtime
         /// </summary>
         protected override void Awake()
         {
-#if UNITY_ANDROID
-            componentType = m_componentAndroidType;
-#elif UNITY_IOS
-            componentType = m_componentIOSType;
-#elif UNITY_WEBGL
-            componentType = m_componentWebGLType;
-#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX
-            componentType = m_componentPCType;
-#elif UNITY_STANDALONE_OSX
-            componentType = m_componentMacType;
-#else
-            componentType = typeof(DefaultPaymentManager).FullName;
-#endif
-            ImplementationComponentType = Utility.Assembly.GetType(componentType);
+            // 与广告域同构：模块槽位固定收敛到主包 DefaultPaymentManager（门面），
+            // 渠道选择与路由全部交给 PaymentChannelRegistry，渠道包经各自 Bootstrap 自注册
+            ImplementationComponentType = typeof(DefaultPaymentManager);
             InterfaceComponentType = typeof(IPaymentManager);
             base.Awake();
 
@@ -282,11 +266,20 @@ namespace GameFrameX.Payment.Runtime
                 return;
             }
 
-            var manager = PaymentChannelRegistry.ResolveManager(_paymentManager, purchaseParams.ChannelId);
-            if (manager == null)
+            IPaymentManager manager;
+            if (string.IsNullOrEmpty(purchaseParams.ChannelId))
             {
-                Log.Warning("Payment channel '{0}' is not registered.", purchaseParams.ChannelId);
-                return;
+                // 未指定渠道：按注册顺序取首个注册渠道；无注册渠道时回落主包门面（Editor 模拟 / 真机告警）
+                manager = PaymentChannelRegistry.ResolveManager() ?? _paymentManager;
+            }
+            else
+            {
+                manager = PaymentChannelRegistry.GetManager(purchaseParams.ChannelId);
+                if (manager == null)
+                {
+                    Log.Warning("Payment channel '{0}' is not registered.", purchaseParams.ChannelId);
+                    return;
+                }
             }
 
             WireManagerEvents(manager);

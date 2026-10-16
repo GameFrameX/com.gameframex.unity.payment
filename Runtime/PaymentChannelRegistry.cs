@@ -123,35 +123,34 @@ namespace GameFrameX.Payment.Runtime
         }
 
         /// <summary>
-        /// 解析购买参数对应的渠道管理器
+        /// 解析支付渠道管理器
         /// </summary>
         /// <remarks>
-        /// 路由规则：参数携带 ChannelId 时按注册表路由（未注册返回null）；未携带时回落到平台默认管理器；
-        /// 路由结果与平台默认管理器同类型时返回平台默认实例，避免同渠道双实例。
+        /// 路由规则：显式渠道标识时按注册表路由到指定渠道（未注册返回 null）；
+        /// 未指定渠道标识时按注册顺序取首个注册渠道（注册顺序即优先级），多渠道并存且未显式指定时输出告警。
+        /// 解析结果懒实例化并缓存，重复调用返回同一实例。
         /// </remarks>
-        /// <param name="defaultManager">平台默认支付管理器</param>
-        /// <param name="channelId">购买参数携带的渠道标识，可为空</param>
-        /// <returns>渠道管理器；无法路由返回null</returns>
+        /// <param name="channelId">渠道唯一标识，为空时按注册顺序取首个</param>
+        /// <returns>渠道管理器；无可用渠道或未注册返回null</returns>
         [UnityEngine.Scripting.Preserve]
-        public static IPaymentManager ResolveManager(IPaymentManager defaultManager, string channelId)
+        public static IPaymentManager ResolveManager(string channelId = null)
         {
-            if (string.IsNullOrEmpty(channelId))
+            if (!string.IsNullOrEmpty(channelId))
             {
-                return defaultManager;
+                return GetManager(channelId);
             }
 
-            var manager = GetManager(channelId);
-            if (manager == null)
+            foreach (var registration in Registrations.Values)
             {
-                return null;
+                if (Registrations.Count > 1)
+                {
+                    Log.Warning("Payment has {0} registered channels but no explicit channel id given. Resolving by registration priority: '{1}'.", Registrations.Count, registration.ChannelId);
+                }
+
+                return GetManager(registration.ChannelId);
             }
 
-            if (defaultManager != null && manager.GetType() == defaultManager.GetType())
-            {
-                return defaultManager;
-            }
-
-            return manager;
+            return null;
         }
     }
 }

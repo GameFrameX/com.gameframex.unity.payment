@@ -134,58 +134,54 @@ namespace GameFrameX.Payment.Tests
         }
 
         [Test]
-        public void ResolveManager_EmptyChannel_ReturnsDefaultManager()
+        public void ResolveManager_NoRegistration_ReturnsNull()
         {
-            var defaultManager = new StubChannelManager();
-            var resolved = PaymentChannelRegistry.ResolveManager(defaultManager, null);
-
-            Assert.AreSame(defaultManager, resolved);
-
-            Assert.AreSame(defaultManager, PaymentChannelRegistry.ResolveManager(defaultManager, ""));
+            Assert.IsNull(PaymentChannelRegistry.ResolveManager());
+            Assert.IsNull(PaymentChannelRegistry.ResolveManager(null));
+            Assert.IsNull(PaymentChannelRegistry.ResolveManager(""));
         }
 
         [Test]
-        public void ResolveManager_RegisteredChannel_ReturnsChannelManager()
+        public void ResolveManager_EmptyChannel_ReturnsFirstRegistered()
         {
-            var defaultManager = new StubChannelManager();
+            var first = new StubChannelManager();
+            PaymentChannelRegistry.Register(new PaymentChannelRegistration("first", "第一个", () => first));
             PaymentChannelRegistry.Register(new PaymentChannelRegistration("other", "其他渠道", () => new OtherChannelManager()));
 
-            var resolved = PaymentChannelRegistry.ResolveManager(defaultManager, "other");
-
-            Assert.IsInstanceOf<OtherChannelManager>(resolved);
-            Assert.AreNotSame(defaultManager, resolved);
+            Assert.AreSame(first, PaymentChannelRegistry.ResolveManager());
         }
 
         [Test]
-        public void ResolveManager_ChannelSameTypeAsDefault_ReturnsDefaultInstance()
+        public void ResolveManager_ExplicitChannel_ReturnsChannelManager()
         {
-            var defaultManager = new StubChannelManager();
-            PaymentChannelRegistry.Register(new PaymentChannelRegistration("stub", "存根渠道", () => new StubChannelManager()));
+            var first = new StubChannelManager();
+            PaymentChannelRegistry.Register(new PaymentChannelRegistration("first", "第一个", () => first));
+            PaymentChannelRegistry.Register(new PaymentChannelRegistration("other", "其他渠道", () => new OtherChannelManager()));
 
-            var resolved = PaymentChannelRegistry.ResolveManager(defaultManager, "stub");
+            var resolved = PaymentChannelRegistry.ResolveManager("other");
 
-            Assert.AreSame(defaultManager, resolved, "路由结果与平台默认管理器同类型时应复用默认实例，避免双实例");
+            Assert.IsInstanceOf<OtherChannelManager>(resolved);
+            Assert.AreNotSame(first, resolved);
         }
 
         [Test]
         public void ResolveManager_UnknownChannel_ReturnsNull()
         {
-            var resolved = PaymentChannelRegistry.ResolveManager(new StubChannelManager(), "not-exists");
-            Assert.IsNull(resolved);
+            Assert.IsNull(PaymentChannelRegistry.ResolveManager("not-exists"));
         }
 
         [Test]
         public void PurchaseParams_ChannelId_RoutesViaSubclassBinding()
         {
-            var defaultManager = new StubChannelManager();
+            var first = new StubChannelManager();
+            PaymentChannelRegistry.Register(new PaymentChannelRegistration("first", "第一个", () => first));
             PaymentChannelRegistry.Register(new PaymentChannelRegistration("other", "其他渠道", () => new OtherChannelManager()));
 
             var routedParams = new TestPurchaseParams("other");
-            var resolved = PaymentChannelRegistry.ResolveManager(defaultManager, routedParams.ChannelId);
-            Assert.IsInstanceOf<OtherChannelManager>(resolved);
+            Assert.IsInstanceOf<OtherChannelManager>(PaymentChannelRegistry.ResolveManager(routedParams.ChannelId));
 
             var defaultParams = new TestPurchaseParams(null);
-            Assert.AreSame(defaultManager, PaymentChannelRegistry.ResolveManager(defaultManager, defaultParams.ChannelId));
+            Assert.AreSame(first, PaymentChannelRegistry.ResolveManager(defaultParams.ChannelId));
         }
 
         [Test]
@@ -199,16 +195,18 @@ namespace GameFrameX.Payment.Tests
         }
 
         [Test]
-        public void AlipayBootstrap_Register_RegistersAlipayChannel()
+        public void AlipayBootstrap_PlatformGuard_DoesNotRegisterInEditor()
         {
-            // 反射调用渠道包 Bootstrap 的注册方法，验证自注册产物（渠道标识与实例类型）
+            // Editor 下渠道不注册（DefaultPaymentManager 的编辑器模拟不被原生桥渠道抢占默认槽位）；
+            // 未安装 alipay 渠道包时类型不存在，同样不注册
             var bootstrapType = System.Type.GetType("GameFrameX.Payment.Alipay.Runtime.AlipayPaymentBootstrap, GameFrameX.Payment.Alipay.Runtime");
-            Assume.That(bootstrapType, Is.Not.Null, "未安装 alipay 渠道包时跳过");
-            var registerMethod = bootstrapType.GetMethod("Register", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-            registerMethod.Invoke(null, null);
+            if (bootstrapType != null)
+            {
+                var registerMethod = bootstrapType.GetMethod("Register", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+                registerMethod.Invoke(null, null);
+            }
 
-            Assert.IsTrue(PaymentChannelRegistry.Contains("alipay"));
-            Assert.AreEqual("GameFrameX.Payment.Alipay.Runtime.AlipayManager", PaymentChannelRegistry.GetManager("alipay").GetType().FullName);
+            Assert.IsFalse(PaymentChannelRegistry.Contains("alipay"), "Editor 下支付宝渠道不应注册");
         }
     }
 }
