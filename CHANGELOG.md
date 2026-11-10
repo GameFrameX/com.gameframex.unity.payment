@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/gameframex/com.gameframex.unity.payment/compare/3.0.0...3.0.1) (2026-11-10)
+
+
+### Bug Fixes
+
+* **payment:** 添加完整 link.xml 防代码裁剪保护 ([a56ba22](https://github.com/gameframex/com.gameframex.unity.payment/commit/a56ba227e83ca72d4e75d21253bb66113f36e994))
+
 # [3.0.0](https://github.com/gameframex/com.gameframex.unity.payment/compare/2.0.0...3.0.0) (2026-10-16)
 
 
