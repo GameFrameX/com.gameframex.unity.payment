@@ -95,6 +95,7 @@ namespace GameFrameX.Payment.Runtime
             {
                 manager = registration.Factory();
                 Managers[channelId] = manager;
+                Log.Info("Payment manager created : channel '{0}', manager '{1}'.", channelId, manager.GetType().FullName);
             }
 
             return manager;
