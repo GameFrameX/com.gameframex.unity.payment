@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/gameframex/com.gameframex.unity.payment/compare/3.0.1...3.1.0) (2026-11-11)
+
+
+### Features
+
+* **payment:** 渠道管理器创建时输出日志 ([4eb6dc6](https://github.com/gameframex/com.gameframex.unity.payment/commit/4eb6dc69f0e6b32f553263c842edd9faecca255a))
+
 ## [3.0.1](https://github.com/gameframex/com.gameframex.unity.payment/compare/3.0.0...3.0.1) (2026-11-10)
 
 
